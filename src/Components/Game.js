@@ -15,14 +15,7 @@ const Game = () => {
       const val = cross ? "X" : "0";
       if (cross) setCross(false);
       else setCross(true);
-      // let val = "";
-      // if (cross) {
-      //   val = "X";
-      //   setCross(false);
-      // } else {
-      //   val = "0";
-      //   setCross(true);
-      // }
+
       e.target.value = val;
       list[i - 1] = val;
       setList(list);
