@@ -12,15 +12,17 @@ const Game = () => {
 
   const setFieldValue = (e, i) => {
     if (list[i - 1] === "") {
-      //const val = current === "1" ? "X" : "0";
-      let val = "";
-      if (cross) {
-        val = "X";
-        setCross(false);
-      } else {
-        val = "0";
-        setCross(true);
-      }
+      const val = cross ? "X" : "0";
+      if (cross) setCross(false);
+      else setCross(true);
+      // let val = "";
+      // if (cross) {
+      //   val = "X";
+      //   setCross(false);
+      // } else {
+      //   val = "0";
+      //   setCross(true);
+      // }
       e.target.value = val;
       list[i - 1] = val;
       setList(list);
