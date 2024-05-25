@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Game.css";
 
 const Game = () => {
@@ -6,6 +7,7 @@ const Game = () => {
 
   const [cross, setCross] = useState(true);
   const [track, setTrack] = useState({
+    key: 0,
     winStatus: false,
     value: "Not Started",
   });
@@ -13,17 +15,24 @@ const Game = () => {
   const setFieldValue = (e, i) => {
     if (list[i - 1] === "") {
       const val = cross ? "X" : "0";
-      if (cross) setCross(false);
-      else setCross(true);
-
+      setCross((cross) => (cross ? false : true));
       e.target.value = val;
       list[i - 1] = val;
       setList(list);
       console.log(list);
-      setTrack({ ...track, value: "In Progress" });
+      setTrack({ ...track, value: "In Progress", key: 1 });
       checktrack(list);
       console.log(`track status is ${track.winStatus}`);
     }
+  };
+
+  const onResetClick = () => {
+    const newList = ["", "", "", "", "", "", "", "", ""];
+    setList(newList);
+    setTrack({ winStatus: false, value: "Not Started", key: 0 });
+    console.log("track value::", track.value);
+    console.log(list);
+    setCross(true);
   };
 
   const checktrack = (list) => {
@@ -32,23 +41,21 @@ const Game = () => {
       (list[3] === list[4] && list[3] === list[5] && list[3] !== "") ||
       (list[6] === list[7] && list[6] === list[8] && list[6] !== "")
     ) {
-      setTrack({ winStatus: true, value: "Won" });
-      console.log(" row");
+      setTrack({ winStatus: true, value: "Won", key: 2 });
+      console.log(list);
     }
     if (
       (list[0] === list[3] && list[0] === list[6] && list[0] !== "") ||
       (list[1] === list[4] && list[1] === list[7] && list[1] !== "") ||
       (list[2] === list[5] && list[2] === list[8] && list[2] !== "")
     ) {
-      setTrack({ winStatus: true, value: "Won" });
-      console.log(" cols");
+      setTrack({ winStatus: true, value: "Won", key: 2 });
     }
     if (
       (list[0] === list[4] && list[0] === list[8] && list[0] !== "") ||
       (list[2] === list[4] && list[2] === list[6] && list[2] !== "")
     ) {
-      setTrack({ winStatus: true, value: "Won" });
-      console.log(" diagnols");
+      setTrack({ winStatus: true, value: "Won", key: 2 });
     }
   };
 
@@ -125,12 +132,17 @@ const Game = () => {
             {list[8]}
           </button>
         </div>
+        <button className="resetButton" onClick={onResetClick}>
+          Reset
+        </button>
         {track.winStatus ? (
           <h2 style={{ color: "Green" }}>
             Player {cross ? "0 " : "X "} {track.value}
           </h2>
         ) : (
-          <h1 style={{ color: "Red" }}>{track.value}</h1>
+          <h1 style={track.key === 0 ? { color: "Red" } : { color: "blue" }}>
+            {track.value}
+          </h1>
         )}
       </div>
     </div>

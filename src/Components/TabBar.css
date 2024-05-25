@@ -1,0 +1,25 @@
+.tab-titles {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    background: #f0f0f0;
+    margin: 0;
+  }
+  
+  .tab-titles li {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+  }
+  
+  .tab-titles li.active {
+    background-color: #fff;
+    border-bottom: none;
+  }
+  
+  .tab-content {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: -1px;
+  }
+  

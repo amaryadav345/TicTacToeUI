@@ -4,4 +4,11 @@
 
 }
 
+.top-navbar {
+  height: 80px;
+  width: 100%;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+}
 

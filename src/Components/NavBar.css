@@ -1,0 +1,13 @@
+.top-navbar {
+    height: 50px;
+    width: 100%;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+  }
+  
+  .top-navbar .link {
+    margin: 5px;
+    padding: 5px;
+    font-size: 20px;
+  }
